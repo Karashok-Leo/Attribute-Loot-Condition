@@ -8,8 +8,7 @@
     "Karashok-Leo"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "sources": "https://github.com/Karashok-Leo/Attribute-Loot-Condition"
   },
   "license": "LGPLv2.1",
   "icon": "assets/attribute_loot_condition/icon.png",

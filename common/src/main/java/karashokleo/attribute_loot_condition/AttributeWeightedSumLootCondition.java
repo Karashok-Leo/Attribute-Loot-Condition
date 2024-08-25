@@ -19,13 +19,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.List;
 import java.util.Set;
 
-public record AttributeLootCondition(
+public record AttributeWeightedSumLootCondition(
         LootContext.EntityTarget entity,
         double min,
         double max
 ) implements LootItemCondition
 {
-    public static final ResourceLocation ID = new ResourceLocation(ALCMod.MOD_ID, ALCMod.MOD_ID);
+    public static final ResourceLocation ID = new ResourceLocation(ALCMod.MOD_ID, "attribute_weighted_sum");
     public static final ALCSerializer SERIALIZER = new ALCSerializer();
     public static final LootItemConditionType ALC = new LootItemConditionType(SERIALIZER);
 
@@ -69,13 +69,13 @@ public record AttributeLootCondition(
 
     public static LootItemCondition.Builder create(LootContext.EntityTarget entity, int min, int max)
     {
-        return () -> new AttributeLootCondition(entity, min, max);
+        return () -> new AttributeWeightedSumLootCondition(entity, min, max);
     }
 
-    public static class ALCSerializer implements Serializer<AttributeLootCondition>
+    public static class ALCSerializer implements Serializer<AttributeWeightedSumLootCondition>
     {
         @Override
-        public void serialize(JsonObject json, AttributeLootCondition condition, JsonSerializationContext context)
+        public void serialize(JsonObject json, AttributeWeightedSumLootCondition condition, JsonSerializationContext context)
         {
             json.add("entity", context.serialize(condition.entity));
             json.add("min", context.serialize(condition.min));
@@ -84,9 +84,9 @@ public record AttributeLootCondition(
 
         @NotNull
         @Override
-        public AttributeLootCondition deserialize(JsonObject json, JsonDeserializationContext context)
+        public AttributeWeightedSumLootCondition deserialize(JsonObject json, JsonDeserializationContext context)
         {
-            return new AttributeLootCondition(
+            return new AttributeWeightedSumLootCondition(
                     GsonHelper.getAsObject(json, "entity", context, LootContext.EntityTarget.class),
                     GsonHelper.getAsDouble(json, "min"),
                     GsonHelper.getAsDouble(json, "max")

@@ -1,7 +1,7 @@
 package karashokleo.attribute_loot_condition.fabric;
 
 import karashokleo.attribute_loot_condition.ALCMod;
-import karashokleo.attribute_loot_condition.AttributeLootCondition;
+import karashokleo.attribute_loot_condition.AttributeWeightedSumLootCondition;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -19,8 +19,8 @@ public final class ALCFabric implements ModInitializer
     {
         Registry.register(
                 BuiltInRegistries.LOOT_CONDITION_TYPE,
-                AttributeLootCondition.ID,
-                AttributeLootCondition.ALC
+                AttributeWeightedSumLootCondition.ID,
+                AttributeWeightedSumLootCondition.ALC
         );
     }
 }
