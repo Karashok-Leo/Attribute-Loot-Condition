@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "attribute_loot_condition",
+  "version": "${version}",
+  "name": "Attribute Loot Condition",
+  "description": "Add a new type of loot condition.",
+  "authors": [
+    "Karashok-Leo"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/FabricMC/fabric-example-mod"
+  },
+  "license": "LGPLv2.1",
+  "icon": "assets/attribute_loot_condition/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "karashokleo.attribute_loot_condition.fabric.ALCFabric"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.0",
+    "minecraft": "~1.20.1",
+    "java": ">=17"
+  }
+}

@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+#issueTrackerURL = ""
+license = "LGPLv2.1"
+
+[[mods]]
+modId = "attribute_loot_condition"
+version = "${version}"
+displayName = "Attribute Loot Condition"
+authors = "Karashok-Leo"
+description = '''
+Add a new type of loot condition.
+'''
+#logoFile = ""
+
+[[dependencies.attribute_loot_condition]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.attribute_loot_condition]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,)"
+ordering = "NONE"
+side = "BOTH"
