@@ -16,13 +16,13 @@ Add a new type of loot condition.
 [[dependencies.attribute_loot_condition]]
 modId = "neoforge"
 type = "required"
-versionRange = "[21.2,)"
+versionRange = "[21.0,21.1]"
 ordering = "NONE"
 side = "BOTH"
 
 [[dependencies.attribute_loot_condition]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.2,)"
+versionRange = "[1.21,1.21.1]"
 ordering = "NONE"
 side = "BOTH"

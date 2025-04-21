@@ -36,7 +36,7 @@ public class ALCConfig
         {
             JsonObject object = json.getAsJsonObject();
             String attrId = GsonHelper.getAsString(object, ATTRIBUTE_KEY);
-            Holder<Attribute> attribute = BuiltInRegistries.ATTRIBUTE.get(ResourceLocation.parse(attrId)).orElseThrow(
+            Holder<Attribute> attribute = BuiltInRegistries.ATTRIBUTE.getHolder(ResourceLocation.parse(attrId)).orElseThrow(
                     () -> new JsonParseException("Unknown attribute: " + attrId)
             );
             double weight = GsonHelper.getAsDouble(object, WEIGHT_KEY);

@@ -5,10 +5,10 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.context.ContextKey;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParam;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemConditionType;
@@ -57,7 +57,7 @@ public record AttributeWeightedSumLootCondition(
     @Override
     public boolean test(LootContext lootContext)
     {
-        if (lootContext.getParameter(this.entity.getParam()) instanceof LivingEntity livingEntity)
+        if (lootContext.getParam(this.entity.getParam()) instanceof LivingEntity livingEntity)
         {
             double totalValue = getTotalValue(livingEntity);
             return (min <= 0 || totalValue >= min) &&
@@ -67,7 +67,7 @@ public record AttributeWeightedSumLootCondition(
 
     @NotNull
     @Override
-    public Set<ContextKey<?>> getReferencedContextParams()
+    public Set<LootContextParam<?>> getReferencedContextParams()
     {
         return ImmutableSet.of(LootContextParams.ORIGIN, this.entity.getParam());
     }
