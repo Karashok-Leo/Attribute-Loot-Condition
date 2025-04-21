@@ -2,6 +2,7 @@ package karashokleo.attribute_loot_condition;
 
 import com.google.gson.*;
 import com.google.gson.annotations.JsonAdapter;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -21,7 +22,7 @@ public class ALCConfig
     );
 
     @JsonAdapter(WeightedAttributeAdapter.class)
-    public record WeightedAttributeEntry(Attribute attribute, double weight)
+    public record WeightedAttributeEntry(Holder<Attribute> attribute, double weight)
     {
     }
 
@@ -35,7 +36,9 @@ public class ALCConfig
         {
             JsonObject object = json.getAsJsonObject();
             String attrId = GsonHelper.getAsString(object, ATTRIBUTE_KEY);
-            Attribute attribute = BuiltInRegistries.ATTRIBUTE.get(new ResourceLocation(attrId));
+            Holder<Attribute> attribute = BuiltInRegistries.ATTRIBUTE.get(ResourceLocation.parse(attrId)).orElseThrow(
+                    () -> new JsonParseException("Unknown attribute: " + attrId)
+            );
             double weight = GsonHelper.getAsDouble(object, WEIGHT_KEY);
             return new WeightedAttributeEntry(attribute, weight);
         }
@@ -44,7 +47,7 @@ public class ALCConfig
         public JsonElement serialize(WeightedAttributeEntry src, Type typeOfSrc, JsonSerializationContext context)
         {
             JsonObject object = new JsonObject();
-            String attribute = BuiltInRegistries.ATTRIBUTE.getResourceKey(src.attribute).orElseThrow().location().toString();
+            String attribute = BuiltInRegistries.ATTRIBUTE.getResourceKey(src.attribute.value()).orElseThrow().location().toString();
             object.addProperty(ATTRIBUTE_KEY, attribute);
             object.addProperty(WEIGHT_KEY, src.weight);
             return object;
